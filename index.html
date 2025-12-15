@@ -1,28 +1,60 @@
-
-<!DOCTYPE html>
-  </script>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Mental Health Tracker (DASS-21)</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>DASS-21 Tracker</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Mental Health Tracker</h1>
-  <p id="questionText"></p>
-
-  <div id="options">
-    <button onclick="answer(0)">Never</button>
-    <button onclick="answer(1)">Sometimes</button>
-    <button onclick="answer(2)">Often</button>
-    <button onclick="answer(3)">Always</button>
+  <!-- LOGIN SECTION -->
+  <div class="container" id="loginBox">
+    <h1>Login</h1>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button class="btn" onclick="login()">Login</button>
+    <p id="error" style="color:red;"></p>
   </div>
 
-  <div id="result" style="display:none;"></div>
-</div>
+  <!-- MAIN CONTENT (HIDDEN UNTIL LOGIN) -->
+  <div class="container" id="mainContent" style="display:none;">
+    <h1>DASS-21 Mental Health Tracker</h1>
+    <p>Answer 21 short questions to calculate Depression, Anxiety & Stress.</p>
+    <a class="btn" href="question1.html">Start Assessment</a>
+    <br><br>
+    <button class="btn" onclick="logout()">Logout</button>
+  </div>
 
-<script src="script.js"></script>
+  <!-- JAVASCRIPT -->
+  <script>
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "admin" && pass === "1234") {
+        localStorage.setItem("loggedIn", "true");
+        showMain();
+      } else {
+        document.getElementById("error").innerText = "Invalid login details";
+      }
+    }
+
+    function showMain() {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      location.reload();
+    }
+
+    // Auto login check
+    if (localStorage.getItem("loggedIn") === "true") {
+      showMain();
+    }
+  </script>
+
 </body>
 </html>
