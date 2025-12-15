@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mental Health Tracker (DASS-21)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Mental Health Tracker</h1>
+  <p id="questionText"></p>
+
+  <div id="options">
+    <button onclick="answer(0)">Never</button>
+    <button onclick="answer(1)">Sometimes</button>
+    <button onclick="answer(2)">Often</button>
+    <button onclick="answer(3)">Always</button>
+  </div>
+
+  <div id="result" style="display:none;"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
