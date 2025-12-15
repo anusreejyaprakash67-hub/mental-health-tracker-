@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <p id="error" style="color:red;"></p>
+
+  <script>
+    const validUser = "user";
+    const validPass = "password";
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if(user === validUser && pass === validPass) {
+        // save login status
+        localStorage.setItem("loggedIn", "true");
+        // redirect to quiz page
+        window.location.href = "quiz.html";
+      } else {
+        document.getElementById("error").innerText = "Invalid username or password.";
+      }
+    }
+  </script>
+</body>
+</html>
